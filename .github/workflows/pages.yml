@@ -23,16 +23,17 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       # Every <site>/public folder is served at /<site>/. Add a site = add a folder.
+      # ROOT_SITE is also served at /, so the custom domain opens it directly.
       - name: Assemble sites
+        env:
+          ROOT_SITE: sxsw2027
         run: |
           mkdir _site
-          echo '<!doctype html><meta charset="utf-8"><title>Sites</title><ul>' > _site/index.html
+          cp -r "$ROOT_SITE/public/." _site/
           for dir in */public/; do
             site="${dir%%/*}"
             cp -r "$dir" "_site/$site"
-            echo "<li><a href=\"$site/\">$site</a></li>" >> _site/index.html
           done
-          echo '</ul>' >> _site/index.html
       - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
