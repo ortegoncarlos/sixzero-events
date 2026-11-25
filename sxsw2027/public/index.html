@@ -139,6 +139,18 @@ td.hl,th.hl{color:var(--amber)}
 .clients{margin-top:28px;font-size:14px;color:var(--mute);max-width:90ch}
 .clients b{color:var(--text);font-weight:500}
 
+/* client logos: grey-on-white tiles, inverted so the white lands on --ink */
+.logos{padding:clamp(28px,4vw,48px) 0 0}
+.logos p{text-align:center;color:var(--mute);margin-bottom:10px;padding:0 var(--gutter)}
+.rail{overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.rail ul{display:flex;width:max-content;list-style:none;margin:0;padding:0}
+.rail img{width:clamp(92px,10vw,124px);height:auto;filter:invert(.937);opacity:.85}
+.rail.go{overflow:hidden}
+.rail.go ul{animation:slide 80s linear infinite}
+.rail.go ul.rev{animation-direction:reverse}
+.rail.go:hover ul{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+
 /* closing */
 .close{position:relative;overflow:hidden;isolation:isolate;padding:clamp(72px,11vw,150px) 0}
 .close video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
@@ -201,6 +213,60 @@ footer img{height:30px;width:auto;opacity:.9}
 </header>
 
 <main>
+<section class="logos" aria-labelledby="logos-t">
+  <p class="mono" id="logos-t"><span class="es">Más de 40 marcas y organizaciones confían en nosotros</span><span class="en">Trusted by 40+ brands and organizations</span></p>
+  <div class="rail">
+  <ul>
+    <li><img src="assets/clients/unicef.jpg" alt="UNICEF" width="120" height="120"></li>
+    <li><img src="assets/clients/honda.jpg" alt="Honda" width="120" height="120"></li>
+    <li><img src="assets/clients/microsoft.png" alt="Microsoft" width="120" height="120"></li>
+    <li><img src="assets/clients/y-combinator.jpg" alt="Y Combinator" width="120" height="120"></li>
+    <li><img src="assets/clients/british-council.jpg" alt="British Council" width="120" height="120"></li>
+    <li><img src="assets/clients/usaid.jpg" alt="USAID" width="120" height="120"></li>
+    <li><img src="assets/clients/bancolombia.jpg" alt="Fundación Bancolombia" width="120" height="120"></li>
+    <li><img src="assets/clients/mccann.jpg" alt="McCann" width="120" height="120"></li>
+    <li><img src="assets/clients/stanley.png" alt="Stanley" width="120" height="120"></li>
+    <li><img src="assets/clients/iom.jpg" alt="IOM · OIM" width="120" height="120"></li>
+    <li><img src="assets/clients/total.jpg" alt="Total" width="120" height="120"></li>
+    <li><img src="assets/clients/sancho-bbdo.jpg" alt="Sancho BBDO" width="120" height="120"></li>
+    <li><img src="assets/clients/kuehne-nagel.jpg" alt="Kuehne + Nagel" width="120" height="120"></li>
+    <li><img src="assets/clients/afd.jpg" alt="AFD, Agence Française de Développement" width="120" height="120"></li>
+    <li><img src="assets/clients/aecid.jpg" alt="AECID" width="120" height="120"></li>
+    <li><img src="assets/clients/das-audio.jpg" alt="DAS Audio" width="120" height="120"></li>
+    <li><img src="assets/clients/old-mutual.jpg" alt="Old Mutual" width="120" height="120"></li>
+    <li><img src="assets/clients/idartes.jpg" alt="Idartes" width="120" height="120"></li>
+    <li><img src="assets/clients/mincultura.jpg" alt="Mincultura" width="120" height="120"></li>
+    <li><img src="assets/clients/ibcr.png" alt="International Bureau for Children's Rights" width="120" height="120"></li>
+    <li><img src="assets/clients/love-futbol.jpg" alt="love.fútbol" width="120" height="120"></li>
+    <li><img src="assets/clients/ventures.jpg" alt="Ventures" width="120" height="120"></li>
+  </ul>
+  <ul class="rev">
+    <li><img src="assets/clients/agriteam.jpg" alt="Agriteam Canada" width="120" height="120"></li>
+    <li><img src="assets/clients/llorona-records.jpg" alt="Llorona Records" width="120" height="120"></li>
+    <li><img src="assets/clients/jep.jpg" alt="JEP, Jurisdicción Especial para la Paz" width="120" height="120"></li>
+    <li><img src="assets/clients/fip.png" alt="FIP, Fundación Ideas para la Paz" width="120" height="120"></li>
+    <li><img src="assets/clients/nourish-the-children.jpg" alt="Nourish the Children" width="120" height="120"></li>
+    <li><img src="assets/clients/children-change-colombia.jpg" alt="Children Change Colombia" width="120" height="120"></li>
+    <li><img src="assets/clients/tiempo-de-juego.jpg" alt="Fundación Tiempo de Juego" width="120" height="120"></li>
+    <li><img src="assets/clients/seleccion-colombia.jpg" alt="Fundación Selección Colombia" width="120" height="120"></li>
+    <li><img src="assets/clients/fedepalma.jpg" alt="Fedepalma" width="120" height="120"></li>
+    <li><img src="assets/clients/fedesoft.jpg" alt="Fedesoft" width="120" height="120"></li>
+    <li><img src="assets/clients/dnp.jpg" alt="DNP, Departamento Nacional de Planeación" width="120" height="120"></li>
+    <li><img src="assets/clients/cnmh.jpg" alt="Centro Nacional de Memoria Histórica" width="120" height="120"></li>
+    <li><img src="assets/clients/delia-zapata.png" alt="Centro Nacional de las Artes Delia Zapata Olivella" width="120" height="120"></li>
+    <li><img src="assets/clients/bogota.jpg" alt="Alcaldía de Bogotá, Secretaría de Gobierno" width="120" height="120"></li>
+    <li><img src="assets/clients/patrimonio-natural.jpg" alt="Patrimonio Natural" width="120" height="120"></li>
+    <li><img src="assets/clients/redd.jpg" alt="REDD+ Colombia" width="120" height="120"></li>
+    <li><img src="assets/clients/fondo-accion.jpg" alt="Fondo Acción" width="120" height="120"></li>
+    <li><img src="assets/clients/escuela-nueva.jpg" alt="Fundación Escuela Nueva" width="120" height="120"></li>
+    <li><img src="assets/clients/sierra-nevada.jpg" alt="Sierra Nevada" width="120" height="120"></li>
+    <li><img src="assets/clients/transforma.jpg" alt="Transforma" width="120" height="120"></li>
+    <li><img src="assets/clients/comunica.jpg" alt="Comunica" width="120" height="120"></li>
+    <li><img src="assets/clients/elementos.jpg" alt="Elementos Arquitectura y Producción" width="120" height="120"></li>
+  </ul>
+  </div>
+</section>
+
 <section id="valor" style="padding-bottom:0">
   <div class="wrap">
     <div class="head">
@@ -426,6 +492,9 @@ footer img{height:30px;width:auto;opacity:.9}
   var vids=[document.getElementById('reel'),document.getElementById('vuelo')];
   if(still){vids.forEach(function(v){v.removeAttribute('autoplay');v.pause()})}
   else{vids.forEach(function(v){var p=v.play();if(p&&p.catch)p.catch(function(){})})}
+
+  // Logo marquee: duplicate each row so the -50% slide loops seamlessly. Without JS or with reduced motion it stays a scrollable strip.
+  if(!still){var rail=document.querySelector('.rail');rail.querySelectorAll('ul').forEach(function(ul){Array.from(ul.children).forEach(function(li){var c=li.cloneNode(true);c.setAttribute('aria-hidden','true');ul.appendChild(c)})});rail.classList.add('go')}
 
   // Running timecode beside REC, read from the reel itself (24 fps display).
   var tc=document.getElementById('tc'), reel=vids[0];
