@@ -35,8 +35,9 @@ img,video{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3{font-family:var(--display);color:var(--bright);margin:0;text-wrap:balance;letter-spacing:-.02em;line-height:1.02}
 p{margin:0}
+h1,h2,h3{overflow-wrap:break-word}html:lang(de) :is(h1,h2,h3){hyphens:auto}html:lang(ja) :is(h1,h2,h3),html:lang(zh) :is(h1,h2,h3){word-break:auto-phrase}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
-html[lang="es"] .en,html[lang="en"] .es{display:none!important}
+html[lang="es"] .en,html:not([lang="es"]) .es{display:none!important}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
 .mono{font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase;font-size:12px}
 
@@ -45,9 +46,8 @@ html[lang="es"] .en,html[lang="en"] .es{display:none!important}
 .bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px}
 .bar img{height:38px;width:auto}
 .bar nav{display:flex;align-items:center;gap:14px}
-.lang{display:flex;border:1px solid rgba(255,255,255,.35);border-radius:999px;overflow:hidden}
-.lang button{all:unset;cursor:pointer;padding:6px 12px;font:600 12px var(--body);color:var(--bright)}
-.lang button[aria-pressed="true"]{background:var(--bright);color:var(--ink)}
+.lang{background:rgba(16,16,16,.35);border:1px solid rgba(255,255,255,.35);border-radius:999px;color:var(--bright);font:600 13px var(--body);padding:0 12px;min-height:44px;cursor:pointer}
+.lang option{background:var(--ink);color:var(--bright)}
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--ink);font:700 15px var(--display);padding:13px 22px;border-radius:999px;text-decoration:none;transition:transform .15s}
 .btn:hover{transform:translateY(-2px)}
 .btn.ghost{background:transparent;color:var(--bright);box-shadow:inset 0 0 0 1px rgba(255,255,255,.45)}
@@ -187,10 +187,9 @@ footer img{height:30px;width:auto;opacity:.9}
   <div class="bar"><div class="wrap">
     <a href="#" aria-label="Sixzero Media"><img src="assets/logo_white.webp" alt="Sixzero Media" width="350" height="110"></a>
     <nav>
-      <div class="lang" role="group" aria-label="Idioma / Language">
-        <button type="button" id="lang-es" aria-pressed="false">ES</button>
-        <button type="button" id="lang-en" aria-pressed="true">EN</button>
-      </div>
+      <select class="lang" id="lang" aria-label="Idioma / Language">
+        <option value="en">EN</option><option value="es">ES</option><option value="pt">PT</option><option value="it">IT</option><option value="de">DE</option><option value="zh">中文</option><option value="ja">日本語</option>
+      </select>
       <a class="btn" href="#contacto"><span class="es">Consultar mi fecha</span><span class="en">Check my date</span></a>
     </nav>
   </div></div>
@@ -217,7 +216,7 @@ footer img{height:30px;width:auto;opacity:.9}
       <div><b>10+</b><span class="es">años produciendo contenido audiovisual</span><span class="en">years producing audiovisual content</span></div>
       <div><b>24 h</b><span class="es">para recibir la selección de fotos</span><span class="en">to receive your photo selects</span></div>
       <div><b>72 h</b><span class="es">entrega final en Event Booster</span><span class="en">final delivery on Event Booster</span></div>
-      <div><b>$16–$24</b><span class="es">por pieza terminada, según el paquete</span><span class="en">per finished asset, depending on package</span></div>
+      <div><b>$16–$32</b><span class="es">por pieza terminada, según el paquete</span><span class="en">per finished asset, depending on package</span></div>
     </div>
   </div>
 </header>
@@ -285,7 +284,7 @@ footer img{height:30px;width:auto;opacity:.9}
       <p><span class="es">Un evento en SXSW cuesta semanas de planeación y dura una tarde. Lo que queda es el contenido. Así nos aseguramos de que valga más de lo que pagas.</span><span class="en">A SXSW event takes weeks to plan and lasts one afternoon. What remains is the content. Here is how we make it worth more than you pay.</span></p>
     </div>
     <div class="value">
-      <div><span class="mono">01 · <span class="es">Resultado</span><span class="en">Outcome</span></span><h3><span class="es">Semanas de contenido de un solo evento</span><span class="en">Weeks of content from one event</span></h3><p><span class="es">Entre 123 y 520 piezas terminadas: fotos editadas, reels verticales, video resumen y entrevistas.</span><span class="en">Between 123 and 520 finished assets: edited photos, vertical reels, a recap video and interviews.</span></p></div>
+      <div><span class="mono">01 · <span class="es">Resultado</span><span class="en">Outcome</span></span><h3><span class="es">Semanas de contenido de un solo evento</span><span class="en">Weeks of content from one event</span></h3><p><span class="es">Entre 123 y 522 piezas terminadas: fotos editadas, reels verticales, video resumen y entrevistas.</span><span class="en">Between 123 and 522 finished assets: edited photos, vertical reels, a recap video and interviews.</span></p></div>
       <div><span class="mono">02 · <span class="es">Certeza</span><span class="en">Certainty</span></span><h3><span class="es">Un equipo que ya lo ha hecho</span><span class="en">A crew that has done it before</span></h3><p><span class="es">Más de 10 años produciendo para UNICEF, Honda, British Council y Y Combinator. Sabes qué recibes y cuándo antes de pagar.</span><span class="en">10+ years producing for UNICEF, Honda, British Council and Y Combinator. You know what you get and when before you pay.</span></p></div>
       <div><span class="mono">03 · <span class="es">Velocidad</span><span class="en">Speed</span></span><h3><span class="es">Fotos en 24 horas</span><span class="en">Photos in 24 hours</span></h3><p><span class="es">Publicas mientras tu evento sigue siendo noticia. Entrega final en 72 horas con Booster y en 5 días hábiles con los demás.</span><span class="en">You post while your event is still news. Final delivery in 72 hours on Booster, 5 business days on the rest.</span></p></div>
       <div><span class="mono">04 · <span class="es">Esfuerzo</span><span class="en">Effort</span></span><h3><span class="es">Una reserva, un equipo</span><span class="en">One booking, one crew</span></h3><p><span class="es">Sin coordinar fotógrafo, videógrafo y editor por separado. Nos das el horario y recibes una galería privada lista para publicar.</span><span class="en">No juggling a photographer, a videographer and an editor. Give us the schedule and get a private gallery ready to post.</span></p></div>
@@ -358,16 +357,16 @@ footer img{height:30px;width:auto;opacity:.9}
         <span class="n mono">04</span>
         <h3>SXSW Content Partner</h3>
         <p class="why"><span class="es">Tu equipo audiovisual durante todo SXSW, para marcas con varias actividades.</span><span class="en">Your audiovisual team for all of SXSW, for brands with several activities.</span></p>
-        <div class="price">$12,500<small>USD</small></div>
-        <p class="per"><b>520</b> <span class="es">piezas terminadas · cerca de $24 cada una</span><span class="en">finished assets · about $24 each</span></p>
+        <div class="price">$16,500<small>USD</small></div>
+        <p class="per"><b>522</b> <span class="es">piezas terminadas · cerca de $32 cada una</span><span class="en">finished assets · about $32 each</span></p>
         <div class="tc">
           <div><b>16:00:00</b><span class="es">4 jornadas de 4 h</span><span class="en">4 days of 4 h</span></div>
           <div><b>03</b><span class="es">equipo</span><span class="en">crew</span></div>
           <div><b>500</b><span class="es">fotos editadas</span><span class="en">edited photos</span></div>
-          <div><b>12</b><span class="es">videos</span><span class="en">videos</span></div>
+          <div><b>14</b><span class="es">videos</span><span class="en">videos</span></div>
         </div>
-        <ul class="es"><li>8 videos verticales para redes</li><li>4 videos resumen, uno por evento</li><li>Hasta 8 entrevistas cortas</li><li>Fotos seleccionadas entregadas durante SXSW</li><li>Adaptaciones para Instagram, LinkedIn y TikTok</li><li><b>Bono:</b> calendario sugerido de publicaciones</li><li><b>Bono:</b> reunión de estrategia y preproducción</li><li>Galería para organizadores y patrocinadores</li></ul>
-        <ul class="en"><li>8 vertical videos for social</li><li>4 recap videos, one per event</li><li>Up to 8 short interviews</li><li>Photo selects delivered during SXSW</li><li>Cuts for Instagram, LinkedIn and TikTok</li><li><b>Bonus:</b> suggested posting calendar</li><li><b>Bonus:</b> strategy and pre-production meeting</li><li>Gallery for organizers and sponsors</li></ul>
+        <ul class="es"><li>8 videos verticales para redes</li><li>4 videos resumen, uno por evento</li><li>Hasta 8 entrevistas cortas</li><li>2 video podcasts multicámara, hasta 45 min cada uno</li><li>Fotos seleccionadas entregadas durante SXSW</li><li>Adaptaciones para Instagram, LinkedIn y TikTok</li><li><b>Bono:</b> calendario sugerido de publicaciones</li><li><b>Bono:</b> reunión de estrategia y preproducción</li><li>Galería para organizadores y patrocinadores</li></ul>
+        <ul class="en"><li>8 vertical videos for social</li><li>4 recap videos, one per event</li><li>Up to 8 short interviews</li><li>2 video podcasts, multi-camera, up to 45 min each</li><li>Photo selects delivered during SXSW</li><li>Cuts for Instagram, LinkedIn and TikTok</li><li><b>Bonus:</b> suggested posting calendar</li><li><b>Bonus:</b> strategy and pre-production meeting</li><li>Gallery for organizers and sponsors</li></ul>
         <a class="btn ghost" href="#contacto"><span class="es">Quiero Partner</span><span class="en">Get Partner</span></a>
       </article>
     </div>
@@ -398,14 +397,15 @@ footer img{height:30px;width:auto;opacity:.9}
       <table>
         <thead><tr><th></th><th>Booster</th><th class="hl">Amplifier</th><th>Takeover</th><th>Content Partner</th></tr></thead>
         <tbody>
-          <tr><td><span class="es">Precio (USD)</span><span class="en">Price (USD)</span></td><td>$2,000</td><td class="hl">$3,900</td><td>$6,500</td><td>$12,500</td></tr>
+          <tr><td><span class="es">Precio (USD)</span><span class="en">Price (USD)</span></td><td>$2,000</td><td class="hl">$3,900</td><td>$6,500</td><td>$16,500</td></tr>
           <tr><td><span class="es">Horas de producción</span><span class="en">Production hours</span></td><td>3</td><td class="hl">5</td><td>6</td><td>16</td></tr>
           <tr><td><span class="es">Profesionales</span><span class="en">Crew</span></td><td>2</td><td class="hl">2</td><td>3</td><td>3</td></tr>
           <tr><td><span class="es">Fotos editadas</span><span class="en">Edited photos</span></td><td>120</td><td class="hl">200</td><td>300</td><td>500</td></tr>
           <tr><td><span class="es">Videos verticales</span><span class="en">Vertical videos</span></td><td>2</td><td class="hl">4</td><td>6</td><td>8</td></tr>
           <tr><td><span class="es">Videos resumen</span><span class="en">Recap videos</span></td><td>1</td><td class="hl">1</td><td>1 + teaser</td><td>4</td></tr>
           <tr><td><span class="es">Entrevistas</span><span class="en">Interviews</span></td><td>0</td><td class="hl">3</td><td>5</td><td>8</td></tr>
-          <tr><td><span class="es">Costo por pieza</span><span class="en">Cost per asset</span></td><td>~$16</td><td class="hl">~$18</td><td>~$20</td><td>~$24</td></tr>
+          <tr><td><span class="es">Video podcasts</span><span class="en">Video podcasts</span></td><td>0</td><td class="hl">0</td><td>0</td><td>2</td></tr>
+          <tr><td><span class="es">Costo por pieza</span><span class="en">Cost per asset</span></td><td>~$16</td><td class="hl">~$18</td><td>~$20</td><td>~$32</td></tr>
           <tr><td><span class="es">Entrega final</span><span class="en">Final delivery</span></td><td>72 h</td><td class="hl"><span class="es">5 días hábiles</span><span class="en">5 business days</span></td><td><span class="es">5 días hábiles</span><span class="en">5 business days</span></td><td><span class="es">Por etapas</span><span class="en">In stages</span></td></tr>
         </tbody>
       </table>
@@ -511,11 +511,20 @@ footer img{height:30px;width:auto;opacity:.9}
   player.addEventListener('click',function(e){if(e.target===player||e.target.tagName==='BUTTON')player.close()});
   player.addEventListener('close',function(){frame.innerHTML=''});
 
-  var root=document.documentElement, es=document.getElementById('lang-es'), en=document.getElementById('lang-en');
-  function setLang(l){root.lang=l;es.setAttribute('aria-pressed',l==='es');en.setAttribute('aria-pressed',l==='en');try{localStorage.setItem('szm-lang-v2',l)}catch(e){}}
-  es.addEventListener('click',function(){setLang('es')});
-  en.addEventListener('click',function(){setLang('en')});
-  try{var s=localStorage.getItem('szm-lang-v2');if(s==='en'||s==='es')setLang(s)}catch(e){}
+  // Languages: ES and EN live in the markup. The others reuse the EN elements and swap their text from i18n.json (keyed by the English string), loaded on first use.
+  var root=document.documentElement, sel=document.getElementById('lang'), tags={pt:'pt-BR',zh:'zh-Hans'}, dict=null, nodes=[];
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n;
+  while(n=w.nextNode()){if(n.nodeValue.trim()&&n.parentElement.closest('.en'))nodes.push({n:n,en:n.nodeValue})}
+  function paint(l){nodes.forEach(function(o){var t=dict&&dict[l]&&dict[l][o.en.replace(/\s+/g,' ').trim()];o.n.nodeValue=t?o.en.match(/^\s*/)[0]+t+o.en.match(/\s*$/)[0]:o.en})}
+  function setLang(l){
+    if(!sel.querySelector('option[value="'+l+'"]'))l='en';
+    sel.value=l;root.lang=tags[l]||l;try{localStorage.setItem('szm-lang-v2',l)}catch(e){}
+    if(l==='es'||l==='en'||dict)paint(l);
+    else fetch('i18n.json').then(function(r){return r.json()}).then(function(d){dict=d;paint(sel.value)}).catch(function(){});
+  }
+  sel.addEventListener('change',function(){setLang(sel.value)});
+  var saved=null;try{saved=localStorage.getItem('szm-lang-v2')}catch(e){}
+  setLang(saved||(navigator.language||'en').slice(0,2).toLowerCase());
 
   var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var vids=[document.getElementById('reel'),document.getElementById('vuelo')];
