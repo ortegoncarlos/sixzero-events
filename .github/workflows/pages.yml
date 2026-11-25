@@ -1,0 +1,31 @@
+name: Deploy sites to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      # Every <site>/public folder becomes its own Cloudflare Pages project
+      # named <site> (-> <site>.pages.dev). Add a site = add a folder.
+      - name: Deploy each site
+        run: |
+          for dir in */public/; do
+            site="${dir%%/*}"
+            echo "::group::$site"
+            # Fails harmlessly when the project already exists.
+            npx --yes wrangler@4 pages project create "$site" --production-branch=main || true
+            npx --yes wrangler@4 pages deploy "$dir" --project-name="$site" --branch=main
+            echo "::endgroup::"
+          done

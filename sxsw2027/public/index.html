@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sixzero SXSW 2027 Paquetes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Syne:wght@600;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a dark screening room. Footage on top, then four packages read like slates
+   (timecode, crew, deliverables). Yellow marks the one thing to pick; red only means "recording". */
+:root{
+  color-scheme:dark;
+  --ink:#101010;        /* brand black, page ground */
+  --panel:#1a1a1c;      /* raised surfaces */
+  --line:#2e2e31;       /* hairlines */
+  --text:#cecece;       /* brand body grey */
+  --bright:#fcfcfc;     /* headings */
+  --mute:#8d8f94;       /* secondary text */
+  --amber:#ffbe0a;      /* brand yellow, the accent */
+  --rec:#e8294c;        /* brand red, recording cue only */
+  --display:"Syne",system-ui,sans-serif;
+  --body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Syne Mono",ui-monospace,Menlo,monospace;
+  --gutter:clamp(16px,4vw,48px);
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font:400 15px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);color:var(--bright);margin:0;text-wrap:balance;letter-spacing:-.02em;line-height:1.02}
+p{margin:0}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+html[lang="es"] .en,html[lang="en"] .es{display:none!important}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.mono{font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase;font-size:12px}
+
+/* top bar */
+.bar{position:absolute;inset:0 0 auto 0;z-index:3}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;padding-bottom:20px}
+.bar img{height:38px;width:auto}
+.bar nav{display:flex;align-items:center;gap:14px}
+.lang{display:flex;border:1px solid rgba(255,255,255,.35);border-radius:999px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;padding:6px 12px;font:600 12px var(--body);color:var(--bright)}
+.lang button[aria-pressed="true"]{background:var(--bright);color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--ink);font:700 15px var(--display);padding:13px 22px;border-radius:999px;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--bright);box-shadow:inset 0 0 0 1px rgba(255,255,255,.45)}
+.bar .btn{padding:9px 18px;font-size:14px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;isolation:isolate}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,16,16,.72) 0%,rgba(16,16,16,.35) 35%,rgba(16,16,16,.88) 82%,var(--ink) 100%)}
+.hero > .wrap{padding-top:clamp(120px,17vw,200px);padding-bottom:clamp(40px,6vw,72px)}
+.slate{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;color:var(--bright);margin-bottom:26px}
+.rec{display:inline-flex;align-items:center;gap:8px}
+.rec i{width:10px;height:10px;border-radius:50%;background:var(--rec);animation:blink 1.4s steps(2,jump-none) infinite}
+@keyframes blink{50%{opacity:.25}}
+h1{font-weight:800;font-size:clamp(40px,8.2vw,112px);max-width:12ch}
+h1 em{font-style:normal;color:var(--amber);display:block}
+.lede{max-width:54ch;font-size:clamp(15px,1.5vw,18px);margin-top:26px;color:#e4e4e4}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:clamp(36px,6vw,64px)}
+.facts div{background:rgba(16,16,16,.82);padding:16px 18px}
+.facts b{display:block;font:700 clamp(20px,2.4vw,28px)/1.1 var(--display);color:var(--bright)}
+.facts span{font-size:13px;color:var(--mute)}
+
+/* sections */
+section{padding:clamp(56px,8vw,104px) 0}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end;margin-bottom:38px}
+.head h2{font-size:clamp(30px,4.6vw,58px);font-weight:700}
+.head p{max-width:52ch;justify-self:end}
+.tag{color:var(--amber);margin-bottom:14px;display:block}
+
+/* packages */
+.packs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:stretch}
+.pack{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px 20px 24px;display:flex;flex-direction:column;gap:16px;position:relative}
+.pack .n{color:var(--mute)}
+.pack h3{font-size:25px;font-weight:700}
+.pack .why{font-size:14px;min-height:4.9em}
+.price{font:800 clamp(38px,3.6vw,50px)/1 var(--display);color:var(--bright);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.price small{font:400 12px var(--mono);color:var(--mute);letter-spacing:.04em;margin-left:6px}
+.tc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.tc div{background:var(--ink);padding:9px 10px}
+.tc b{display:block;font:400 17px var(--mono);color:var(--bright)}
+.tc span{font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.pack ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:13.5px;line-height:1.45}
+.pack li{padding-left:16px;position:relative}
+.pack li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1.5px;background:var(--amber)}
+.pack .btn{margin-top:auto;justify-content:center;font-size:14px;padding:11px 16px}
+.pack.pick{background:var(--amber);border-color:var(--amber);color:#2a2104}
+.pack.pick h3,.pack.pick .price{color:var(--ink)}
+.pack.pick .n,.pack.pick .price small{color:#5c4700}
+.pack.pick li::before{background:var(--ink)}
+.pack.pick .btn{background:var(--ink);color:var(--amber)}
+.pack.pick .tc{background:var(--ink);border-color:var(--ink)}
+.flag{position:absolute;top:-11px;right:16px;background:var(--ink);color:var(--amber);padding:4px 10px;border-radius:999px;border:1px solid var(--amber)}
+
+.per{font-size:13px;margin-top:-8px}.per b{color:var(--bright);font-family:var(--mono);font-weight:400}
+.pack.pick .per b{color:var(--ink)}
+.pack li b{color:var(--amber);font-weight:600}.pack.pick li b{color:var(--ink)}
+.value{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.value>div{background:var(--ink);padding:22px 20px;display:grid;gap:10px;align-content:start}
+.value .mono{color:var(--amber)}.value h3{font-size:21px;line-height:1.12}.value p{font-size:14px}
+.promise{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.promise>div{border:1px solid var(--line);border-radius:6px;padding:26px 24px;display:grid;gap:12px;align-content:start;justify-items:start}
+.promise .g{border-color:var(--amber);background:var(--amber);color:#2a2104}.promise .g h3{color:var(--ink);font-size:clamp(30px,4.4vw,54px);font-weight:800}.promise .g .mono{color:#5c4700}.promise .g p{font-size:16px;max-width:44ch}.promise .g .fine{font-size:13px;color:#5c4700}
+.pledge{color:var(--amber);margin-top:18px}
+.promise .mono{color:var(--amber)}.promise h3{font-size:clamp(22px,2.6vw,30px);line-height:1.08}
+/* compare */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{padding:12px 16px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left;color:var(--mute)}
+thead th{font:700 15px var(--display);color:var(--bright);background:var(--panel)}
+tbody tr:last-child td{border-bottom:0}
+td.hl,th.hl{color:var(--amber)}
+
+/* add-ons + terms */
+.two{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,72px)}
+.two h2{font-size:clamp(26px,3.4vw,40px);margin-bottom:22px}
+.adds{list-style:none;margin:0;padding:0}
+.adds li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.adds b{font:400 15px var(--mono);color:var(--bright);white-space:nowrap}
+.terms{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:t}
+.terms li{display:grid;grid-template-columns:34px minmax(0,1fr);counter-increment:t}
+.terms li::before{content:counter(t,decimal-leading-zero);font:400 12px/1.9 var(--mono);color:var(--amber)}
+
+/* work */
+.work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.work a{position:relative;display:block;overflow:hidden;border-radius:6px;text-decoration:none;aspect-ratio:650/572;background:var(--panel)}
+.work img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.work a:hover img{transform:scale(1.05)}
+.work a > span{position:absolute;inset:auto 0 0 0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:var(--bright);font:600 15px/1.25 var(--display)}
+.work a > span small{display:block;font:400 11px var(--mono);color:var(--amber);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.clients{margin-top:28px;font-size:14px;color:var(--mute);max-width:90ch}
+.clients b{color:var(--text);font-weight:500}
+
+/* closing */
+.close{position:relative;overflow:hidden;isolation:isolate;padding:clamp(72px,11vw,150px) 0}
+.close video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.close::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,var(--ink),rgba(16,16,16,.55) 40%,rgba(16,16,16,.8))}
+.close h2{font-size:clamp(34px,6vw,80px);font-weight:800;max-width:14ch}
+.contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:38px}
+.contact div{border-top:1px solid rgba(255,255,255,.4);padding-top:14px}
+.contact b{display:block;font:600 clamp(15px,1.7vw,19px) var(--display);color:var(--bright);overflow-wrap:anywhere}
+.contact a{text-decoration-color:var(--amber);text-underline-offset:4px}
+footer{padding:26px 0 34px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+footer img{height:30px;width:auto;opacity:.9}
+
+@media (max-width:1080px){.value{grid-template-columns:repeat(2,minmax(0,1fr))}.packs{grid-template-columns:repeat(2,minmax(0,1fr))}.pack .why{min-height:0}}
+@media (max-width:820px){.promise{grid-template-columns:minmax(0,1fr)}.head,.two{grid-template-columns:minmax(0,1fr)}.head p{justify-self:start}.work{grid-template-columns:repeat(2,minmax(0,1fr))}.contact{grid-template-columns:minmax(0,1fr)}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.packs,.work,.value{grid-template-columns:minmax(0,1fr)}.bar .btn{display:none}.bar img{height:30px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rec i{animation:none}.btn,.work img{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <video id="reel" src="assets/reel.mp4" poster="assets/reel-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
+  <div class="bar"><div class="wrap">
+    <a href="https://sixzeromedia.com/" aria-label="Sixzero Media"><img src="assets/logo_white.webp" alt="Sixzero Media" width="350" height="110"></a>
+    <nav>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-es" aria-pressed="false">ES</button>
+        <button type="button" id="lang-en" aria-pressed="true">EN</button>
+      </div>
+      <a class="btn" href="#contacto"><span class="es">Consultar mi fecha</span><span class="en">Check my date</span></a>
+    </nav>
+  </div></div>
+  <div class="wrap">
+    <div class="slate mono">
+      <span class="rec"><i></i>REC <span id="tc">00:00:00:00</span></span>
+      <span>SXSW 2027</span><span>Austin, Texas</span>
+      <span class="es">Producción de contenido para eventos</span><span class="en">Event content production</span>
+    </div>
+    <h1>
+      <span class="es">Corten. Queda. Publicado.<em>Desde Austin.</em></span>
+      <span class="en">Cut. Print. Post.<em>From Austin.</em></span>
+    </h1>
+    <p class="lede">
+      <span class="es">Selección de fotos en tiempo real, entrega final en horas y no en días, o no pagas nada. Un solo equipo, fechas limitadas en SXSW.</span>
+      <span class="en">Photo selects in real time, final delivery in hours not days, or you pay nothing. One crew, limited SXSW dates.</span>
+    </p>
+    <div class="cta">
+      <a class="btn" href="#contacto"><span class="es">Consultar mi fecha</span><span class="en">Check my date</span></a>
+      <a class="btn ghost" href="#paquetes"><span class="es">Ver paquetes</span><span class="en">See packages</span></a>
+    </div>
+    <p class="pledge mono"><span class="es">A tiempo o es gratis: 100% de reembolso si entregamos tarde</span><span class="en">On time or it's free: 100% refund if we deliver late</span></p>
+    <div class="facts">
+      <div><b>10+</b><span class="es">años produciendo contenido audiovisual</span><span class="en">years producing audiovisual content</span></div>
+      <div><b>24 h</b><span class="es">para recibir la selección de fotos</span><span class="en">to receive your photo selects</span></div>
+      <div><b>72 h</b><span class="es">entrega final en Event Booster</span><span class="en">final delivery on Event Booster</span></div>
+      <div><b>$16–$24</b><span class="es">por pieza terminada, según el paquete</span><span class="en">per finished asset, depending on package</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="valor" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="tag mono"><span class="es">Por qué funciona</span><span class="en">Why it works</span></span>
+        <h2><span class="es">Más resultado, menos espera, cero trabajo para ti</span><span class="en">More outcome, less waiting, zero work for you</span></h2></div>
+      <p><span class="es">Un evento en SXSW cuesta semanas de planeación y dura una tarde. Lo que queda es el contenido. Así nos aseguramos de que valga más de lo que pagas.</span><span class="en">A SXSW event takes weeks to plan and lasts one afternoon. What remains is the content. Here is how we make it worth more than you pay.</span></p>
+    </div>
+    <div class="value">
+      <div><span class="mono">01 · <span class="es">Resultado</span><span class="en">Outcome</span></span><h3><span class="es">Semanas de contenido de un solo evento</span><span class="en">Weeks of content from one event</span></h3><p><span class="es">Entre 123 y 520 piezas terminadas: fotos editadas, reels verticales, video resumen y entrevistas.</span><span class="en">Between 123 and 520 finished assets: edited photos, vertical reels, a recap video and interviews.</span></p></div>
+      <div><span class="mono">02 · <span class="es">Certeza</span><span class="en">Certainty</span></span><h3><span class="es">Un equipo que ya lo ha hecho</span><span class="en">A crew that has done it before</span></h3><p><span class="es">Más de 10 años produciendo para UNICEF, Honda, British Council y Y Combinator. Sabes qué recibes y cuándo antes de pagar.</span><span class="en">10+ years producing for UNICEF, Honda, British Council and Y Combinator. You know what you get and when before you pay.</span></p></div>
+      <div><span class="mono">03 · <span class="es">Velocidad</span><span class="en">Speed</span></span><h3><span class="es">Fotos en 24 horas</span><span class="en">Photos in 24 hours</span></h3><p><span class="es">Publicas mientras tu evento sigue siendo noticia. Entrega final en 72 horas con Booster y en 5 días hábiles con los demás.</span><span class="en">You post while your event is still news. Final delivery in 72 hours on Booster, 5 business days on the rest.</span></p></div>
+      <div><span class="mono">04 · <span class="es">Esfuerzo</span><span class="en">Effort</span></span><h3><span class="es">Una reserva, un equipo</span><span class="en">One booking, one crew</span></h3><p><span class="es">Sin coordinar fotógrafo, videógrafo y editor por separado. Nos das el horario y recibes una galería privada lista para publicar.</span><span class="en">No juggling a photographer, a videographer and an editor. Give us the schedule and get a private gallery ready to post.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="paquetes">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="tag mono"><span class="es">Paquetes SXSW 2027</span><span class="en">SXSW 2027 packages</span></span>
+        <h2><span class="es">Cuatro formas de cubrir tu evento</span><span class="en">Four ways to cover your event</span></h2></div>
+      <p><span class="es">Todos incluyen posproducción profesional, galería digital privada y música licenciada. Precios en USD.</span><span class="en">Every package includes professional post-production, a private digital gallery and licensed music. Prices in USD.</span></p>
+    </div>
+
+    <div class="packs">
+      <article class="pack">
+        <span class="n mono">01</span>
+        <h3>Event Booster</h3>
+        <p class="why"><span class="es">Cobertura profesional para marcas y eventos de networking.</span><span class="en">Professional coverage for brands and networking events.</span></p>
+        <div class="price">$2,000<small>USD</small></div>
+        <p class="per"><b>123</b> <span class="es">piezas terminadas · cerca de $16 cada una</span><span class="en">finished assets · about $16 each</span></p>
+        <div class="tc">
+          <div><b>03:00:00</b><span class="es">cobertura</span><span class="en">coverage</span></div>
+          <div><b>02</b><span class="es">equipo</span><span class="en">crew</span></div>
+          <div><b>120</b><span class="es">fotos editadas</span><span class="en">edited photos</span></div>
+          <div><b>03</b><span class="es">videos</span><span class="en">videos</span></div>
+        </div>
+        <ul class="es"><li>1 fotógrafo y 1 videógrafo</li><li>2 videos verticales de 30 a 45 s</li><li>1 video resumen de 45 s</li><li><b>Bono:</b> 5 fotos optimizadas para LinkedIn</li><li>Selección de fotos en 24 horas</li><li>Entrega final en 72 horas</li></ul>
+        <ul class="en"><li>1 photographer and 1 videographer</li><li>2 vertical videos, 30 to 45 s</li><li>1 recap video, 45 s</li><li><b>Bonus:</b> 5 photos optimized for LinkedIn</li><li>Photo selects within 24 hours</li><li>Final delivery within 72 hours</li></ul>
+        <a class="btn ghost" href="#contacto"><span class="es">Quiero Booster</span><span class="en">Get Booster</span></a>
+      </article>
+
+      <article class="pack pick">
+        <span class="flag mono"><span class="es">Más elegido</span><span class="en">Most popular</span></span>
+        <span class="n mono">02</span>
+        <h3>Event Amplifier</h3>
+        <p class="why"><span class="es">Convierte tu evento en semanas de contenido para redes.</span><span class="en">Turn your event into weeks of social media content.</span></p>
+        <div class="price">$3,900<small>USD</small></div>
+        <p class="per"><b>213</b> <span class="es">piezas terminadas · cerca de $18 cada una</span><span class="en">finished assets · about $18 each</span></p>
+        <div class="tc">
+          <div><b>05:00:00</b><span class="es">producción</span><span class="en">production</span></div>
+          <div><b>02</b><span class="es">equipo</span><span class="en">crew</span></div>
+          <div><b>200</b><span class="es">fotos editadas</span><span class="en">edited photos</span></div>
+          <div><b>05</b><span class="es">videos</span><span class="en">videos</span></div>
+        </div>
+        <ul class="es"><li>4 videos verticales para redes</li><li>1 video cinematográfico resumen de 60 s</li><li>3 entrevistas cortas a speakers o invitados</li><li>Registro de patrocinadores y activaciones</li><li><b>Bono:</b> 10 fotos listas para tus patrocinadores</li><li><b>Bono:</b> 5 clips adicionales para historias</li><li>Selección en 24 horas, entrega final en 5 días hábiles</li></ul>
+        <ul class="en"><li>4 vertical videos for social</li><li>1 cinematic recap video, 60 s</li><li>3 short interviews with speakers or guests</li><li>Sponsor and activation coverage</li><li><b>Bonus:</b> 10 photos ready for your sponsors</li><li><b>Bonus:</b> 5 extra clips for stories</li><li>Selects in 24 hours, final delivery in 5 business days</li></ul>
+        <a class="btn" href="#contacto"><span class="es">Quiero Amplifier</span><span class="en">Get Amplifier</span></a>
+      </article>
+
+      <article class="pack">
+        <span class="n mono">03</span>
+        <h3>Event Takeover</h3>
+        <p class="why"><span class="es">Cobertura completa, contenido premium y un solo aliado de producción.</span><span class="en">Complete coverage, premium content, one production partner.</span></p>
+        <div class="price">$6,500<small>USD</small></div>
+        <p class="per"><b>323</b> <span class="es">piezas terminadas · cerca de $20 cada una</span><span class="en">finished assets · about $20 each</span></p>
+        <div class="tc">
+          <div><b>06:00:00</b><span class="es">producción</span><span class="en">production</span></div>
+          <div><b>03</b><span class="es">equipo</span><span class="en">crew</span></div>
+          <div><b>300</b><span class="es">fotos editadas</span><span class="en">edited photos</span></div>
+          <div><b>08</b><span class="es">videos</span><span class="en">videos</span></div>
+        </div>
+        <ul class="es"><li>Foto y video multicámara</li><li><b>Bono:</b> teaser de 15 s publicado durante el evento</li><li>6 videos verticales para redes</li><li>1 video cinematográfico de 60 a 90 s</li><li>Hasta 5 entrevistas cortas</li><li>Backstage, speakers, patrocinadores y experiencias</li><li><b>Bono:</b> 15 fotos para patrocinadores y 10 clips adicionales</li><li>Selección en 24 horas, entrega final en 5 días hábiles</li></ul>
+        <ul class="en"><li>Multi-camera photo and video</li><li><b>Bonus:</b> 15 s teaser published during the event</li><li>6 vertical videos for social</li><li>1 cinematic recap, 60 to 90 s</li><li>Up to 5 short interviews</li><li>Backstage, speakers, sponsors and experiences</li><li><b>Bonus:</b> 15 sponsor photos and 10 extra clips</li><li>Selects in 24 hours, final delivery in 5 business days</li></ul>
+        <a class="btn ghost" href="#contacto"><span class="es">Quiero Takeover</span><span class="en">Get Takeover</span></a>
+      </article>
+
+      <article class="pack">
+        <span class="n mono">04</span>
+        <h3>SXSW Content Partner</h3>
+        <p class="why"><span class="es">Tu equipo audiovisual durante todo SXSW, para marcas con varias actividades.</span><span class="en">Your audiovisual team for all of SXSW, for brands with several activities.</span></p>
+        <div class="price">$12,500<small>USD</small></div>
+        <p class="per"><b>520</b> <span class="es">piezas terminadas · cerca de $24 cada una</span><span class="en">finished assets · about $24 each</span></p>
+        <div class="tc">
+          <div><b>16:00:00</b><span class="es">4 jornadas de 4 h</span><span class="en">4 days of 4 h</span></div>
+          <div><b>03</b><span class="es">equipo</span><span class="en">crew</span></div>
+          <div><b>500</b><span class="es">fotos editadas</span><span class="en">edited photos</span></div>
+          <div><b>12</b><span class="es">videos</span><span class="en">videos</span></div>
+        </div>
+        <ul class="es"><li>8 videos verticales para redes</li><li>4 videos resumen, uno por evento</li><li>Hasta 8 entrevistas cortas</li><li>Fotos seleccionadas entregadas durante SXSW</li><li>Adaptaciones para Instagram, LinkedIn y TikTok</li><li><b>Bono:</b> calendario sugerido de publicaciones</li><li><b>Bono:</b> reunión de estrategia y preproducción</li><li>Galería para organizadores y patrocinadores</li></ul>
+        <ul class="en"><li>8 vertical videos for social</li><li>4 recap videos, one per event</li><li>Up to 8 short interviews</li><li>Photo selects delivered during SXSW</li><li>Cuts for Instagram, LinkedIn and TikTok</li><li><b>Bonus:</b> suggested posting calendar</li><li><b>Bonus:</b> strategy and pre-production meeting</li><li>Gallery for organizers and sponsors</li></ul>
+        <a class="btn ghost" href="#contacto"><span class="es">Quiero Partner</span><span class="en">Get Partner</span></a>
+      </article>
+    </div>
+    <div class="promise">
+      <div class="g">
+        <span class="mono"><span class="es">Garantía de entrega</span><span class="en">On-time guarantee</span></span>
+        <h3><span class="es">A tiempo o es gratis</span><span class="en">On time or it's free</span></h3>
+        <p><span class="es">Si tu entrega final llega aunque sea un día después de la fecha prometida, te devolvemos el 100% de lo que pagaste. Y te quedas con todo el contenido.</span><span class="en">If your final delivery lands even one day after the promised date, we refund 100% of what you paid. And you keep every piece of content.</span></p>
+        <p class="fine"><span class="es">Sin letra escondida: aplica cuando tenemos el acceso al evento y tus aprobaciones en las fechas acordadas.</span><span class="en">No hidden catch: it applies when we get the event access and your approvals on the agreed dates.</span></p>
+      </div>
+      <div>
+        <span class="mono"><span class="es">Cupos limitados</span><span class="en">Limited dates</span></span>
+        <h3><span class="es">Un equipo, una semana, pocos cupos</span><span class="en">One crew, one week, few slots</span></h3>
+        <p><span class="es">Trabajamos con un solo equipo en Austin, así que cada franja horaria se reserva una vez. El 50% de anticipo asegura la tuya; cuando una fecha se ocupa, no se abre otra.</span><span class="en">We run a single crew in Austin, so each time slot books once. A 50% deposit locks yours; when a date is taken, we do not open another.</span></p>
+        <a class="btn" href="#contacto"><span class="es">Consultar mi fecha</span><span class="en">Check my date</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="tag mono"><span class="es">Lado a lado</span><span class="en">Side by side</span></span>
+        <h2><span class="es">Qué recibes en cada uno</span><span class="en">What you get in each</span></h2></div>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th></th><th>Booster</th><th class="hl">Amplifier</th><th>Takeover</th><th>Content Partner</th></tr></thead>
+        <tbody>
+          <tr><td><span class="es">Precio (USD)</span><span class="en">Price (USD)</span></td><td>$2,000</td><td class="hl">$3,900</td><td>$6,500</td><td>$12,500</td></tr>
+          <tr><td><span class="es">Horas de producción</span><span class="en">Production hours</span></td><td>3</td><td class="hl">5</td><td>6</td><td>16</td></tr>
+          <tr><td><span class="es">Profesionales</span><span class="en">Crew</span></td><td>2</td><td class="hl">2</td><td>3</td><td>3</td></tr>
+          <tr><td><span class="es">Fotos editadas</span><span class="en">Edited photos</span></td><td>120</td><td class="hl">200</td><td>300</td><td>500</td></tr>
+          <tr><td><span class="es">Videos verticales</span><span class="en">Vertical videos</span></td><td>2</td><td class="hl">4</td><td>6</td><td>8</td></tr>
+          <tr><td><span class="es">Videos resumen</span><span class="en">Recap videos</span></td><td>1</td><td class="hl">1</td><td>1 + teaser</td><td>4</td></tr>
+          <tr><td><span class="es">Entrevistas</span><span class="en">Interviews</span></td><td>0</td><td class="hl">3</td><td>5</td><td>8</td></tr>
+          <tr><td><span class="es">Costo por pieza</span><span class="en">Cost per asset</span></td><td>~$16</td><td class="hl">~$18</td><td>~$20</td><td>~$24</td></tr>
+          <tr><td><span class="es">Entrega final</span><span class="en">Final delivery</span></td><td>72 h</td><td class="hl"><span class="es">5 días hábiles</span><span class="en">5 business days</span></td><td><span class="es">5 días hábiles</span><span class="en">5 business days</span></td><td><span class="es">Por etapas</span><span class="en">In stages</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap two">
+    <div>
+      <span class="tag mono"><span class="es">Servicios adicionales</span><span class="en">Additional services</span></span>
+      <h2><span class="es">Suma lo que necesites</span><span class="en">Add what you need</span></h2>
+      <ul class="adds">
+        <li><span><span class="es">Hora adicional, equipo de 2</span><span class="en">Extra hour, crew of 2</span></span><b>$400</b></li>
+        <li><span><span class="es">Hora adicional, equipo de 3</span><span class="en">Extra hour, crew of 3</span></span><b>$550</b></li>
+        <li><span><span class="es">Video vertical adicional</span><span class="en">Extra vertical video</span></span><b>$200</b></li>
+        <li><span><span class="es">Entrevista adicional</span><span class="en">Extra interview</span></span><b>$200</b></li>
+        <li><span><span class="es">Entrega urgente en 24 horas</span><span class="en">Rush delivery, 24 hours</span></span><b>$400</b></li>
+        <li><span><span class="es">Jornada adicional de producción</span><span class="en">Extra production day</span></span><b><span class="es">desde</span><span class="en">from</span> $2,500</b></li>
+        <li><span><span class="es">Cobertura fotográfica adicional</span><span class="en">Extra photo coverage</span></span><b><span class="es">desde</span><span class="en">from</span> $600</b></li>
+      </ul>
+    </div>
+    <div>
+      <span class="tag mono"><span class="es">Condiciones de reserva</span><span class="en">Booking conditions</span></span>
+      <h2><span class="es">Reglas claras desde el inicio</span><span class="en">Clear terms from the start</span></h2>
+      <ol class="terms es">
+        <li>50% de anticipo para asegurar la fecha. El anticipo no es reembolsable y la reprogramación depende de disponibilidad.</li>
+        <li>El 50% restante se paga según el cronograma acordado.</li>
+        <li>Una ronda de revisión incluida por video.</li>
+        <li>Licencia de uso para redes, web y prensa del cliente y sus patrocinadores. La pauta paga se cotiza aparte.</li>
+        <li>El cliente gestiona las acreditaciones y permisos de ingreso del equipo.</li>
+        <li>Viajes fuera de Austin y alquiler de equipos especiales no están incluidos.</li>
+      </ol>
+      <ol class="terms en">
+        <li>50% deposit to secure your date. The deposit is non-refundable and rescheduling is subject to availability.</li>
+        <li>Remaining 50% according to the agreed payment schedule.</li>
+        <li>One revision round included per video.</li>
+        <li>Usage license for the client's and its sponsors' social, web and press. Paid advertising is quoted separately.</li>
+        <li>The client arranges credentials and venue access for the crew.</li>
+        <li>Travel outside Austin and special equipment rentals are not included.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="tag mono"><span class="es">Nuestro trabajo</span><span class="en">Our work</span></span>
+        <h2><span class="es">Historias que ya contamos</span><span class="en">Stories we have told</span></h2></div>
+      <p><span class="es">Comerciales, documentales, videoclips y animación para marcas globales, agencias y organizaciones.</span><span class="en">Commercials, documentaries, music videos and animation for global brands, agencies and nonprofits.</span></p>
+    </div>
+    <div class="work">
+      <a href="https://sixzeromedia.com/portfolio/ara-series-festival-rock-al-parque/"><img src="assets/p1.webp" alt="Aerial view of the Rock at the Park festival stages"><span><small><span class="es">Comercial</span><span class="en">Commercial</span></small><span class="es">ARA Series | Festival Rock al Parque</span><span class="en">ARA Series | Rock at the Park Festival</span></span></a>
+      <a href="https://sixzeromedia.com/portfolio/bejuco-batea/"><img src="assets/p4.webp" alt="Still from the Bejuco music video Batea"><span><small><span class="es">Videoclip</span><span class="en">Music video</span></small>Bejuco – Batea</span></a>
+      <a href="https://sixzeromedia.com/portfolio/bancolombia-sucursal-del-futuro/"><img src="assets/p3.webp" alt="Bancolombia branch facade"><span><small><span class="es">Comercial</span><span class="en">Commercial</span></small><span class="es">Bancolombia – Sucursal del Futuro</span><span class="en">Bancolombia – Branch of the Future</span></span></a>
+      <a href="https://sixzeromedia.com/portfolio/cacao-conecta-un-futuro-productivo-y-eficaz/"><img src="assets/p5.webp" alt="Portrait of a cacao farmer"><span><small><span class="es">Documental</span><span class="en">Documentary</span></small><span class="es">Cacao Conecta – Un Futuro Productivo y Eficaz</span><span class="en">Cacao Conecta – A Productive and Efficient Future</span></span></a>
+      <a href="https://sixzeromedia.com/portfolio/cacao-conecta-hilando-vidas-y-esperanzas/"><img src="assets/p6.webp" alt="Animated illustration of a cacao farm"><span><small><span class="es">Animación</span><span class="en">Animation</span></small><span class="es">Cacao Conecta | Hilando vidas y Esperanzas</span><span class="en">Cacao Conecta | Weaving Lives and Hopes</span></span></a>
+      <a href="https://sixzeromedia.com/portfolio/centros-integrate-oim-colombia/"><img src="assets/p7.webp" alt="Portrait from the Intégrate Centers documentary"><span><small><span class="es">Documental</span><span class="en">Documentary</span></small><span class="es">Centros Intégrate – OIM</span><span class="en">Intégrate Centers – IOM</span></span></a>
+    </div>
+    <p class="clients"><span class="es">Hemos trabajado con </span><span class="en">We have worked with </span><b>UNICEF, Honda, British Council, Bancolombia, USAID, IOM, Y Combinator, Sancho BBDO, McCann Erickson, Kuehne Nagel, DAS Audio, Idartes</b><span class="es"> y más.</span><span class="en"> and more.</span></p>
+  </div>
+</section>
+</main>
+
+<section class="close" id="contacto">
+  <video id="vuelo" src="assets/vuelo.mp4" poster="assets/vuelo-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
+  <div class="wrap">
+    <span class="tag mono"><span class="es">Antes de que se ocupe tu fecha</span><span class="en">Before your date is taken</span></span>
+    <h2><span class="es">Cuéntanos qué pasa en Austin.</span><span class="en">Tell us what's happening in Austin.</span></h2>
+    <p class="lede"><span class="es">Escríbenos con la fecha, el lugar y el tipo de evento. Respondemos con disponibilidad y el paquete que mejor encaja.</span><span class="en">Send us the date, venue and type of event. We reply with availability and the package that fits best.</span></p>
+    <div class="contact">
+      <div><span class="mono">Email</span><b><a href="mailto:contacto@sixzeromedia.com">contacto@sixzeromedia.com</a></b></div>
+      <div><span class="mono"><span class="es">Teléfono</span><span class="en">Phone</span></span><b><a href="tel:+19089229013">+1 908 922 9013</a></b></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <img src="assets/logo_white.webp" alt="Sixzero Media" width="350" height="110">
+  <span>Sixzero Media · SXSW 2027 · Austin, Texas</span>
+  <span><a href="https://www.instagram.com/sixzeromedia">Instagram</a> · <a href="https://www.youtube.com/@sixzeromedia5818">YouTube</a> · <a href="https://www.tiktok.com/@sixzeromedia">TikTok</a> · <a href="https://sixzeromedia.com/">sixzeromedia.com</a></span>
+</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, es=document.getElementById('lang-es'), en=document.getElementById('lang-en');
+  function setLang(l){root.lang=l;es.setAttribute('aria-pressed',l==='es');en.setAttribute('aria-pressed',l==='en');try{localStorage.setItem('szm-lang-v2',l)}catch(e){}}
+  es.addEventListener('click',function(){setLang('es')});
+  en.addEventListener('click',function(){setLang('en')});
+  try{var s=localStorage.getItem('szm-lang-v2');if(s==='en'||s==='es')setLang(s)}catch(e){}
+
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var vids=[document.getElementById('reel'),document.getElementById('vuelo')];
+  if(still){vids.forEach(function(v){v.removeAttribute('autoplay');v.pause()})}
+  else{vids.forEach(function(v){var p=v.play();if(p&&p.catch)p.catch(function(){})})}
+
+  // Running timecode beside REC, read from the reel itself (24 fps display).
+  var tc=document.getElementById('tc'), reel=vids[0];
+  function pad(n){return (n<10?'0':'')+n}
+  function tick(){var t=reel.currentTime||0,f=Math.floor((t%1)*24),s=Math.floor(t)%60,m=Math.floor(t/60);tc.textContent='00:'+pad(m)+':'+pad(s)+':'+pad(f);requestAnimationFrame(tick)}
+  if(!still)requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
